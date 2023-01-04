@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int bulls=0;
+        int cows=0;
+        
+        int arr[10]={0};
+        for(int i=0;i<secret.length();i++){
+             int x=secret[i] - '0';// accessing value we have to convert string into int
+                int y=guess[i] - '0';
+            if(x==y)
+            bulls++;
+            else{
+               
+              if(arr[x]<0) cows++;
+              if(arr[y]>0) cows++;
+              arr[x]++;
+              arr[y]--;
+
+            }
+        }
+        string s="";   //Appending a string
+        s+=to_string(bulls);
+        s+='A';
+        s+=to_string(cows);
+        s+='B';
+        return s;
+    }
+};
